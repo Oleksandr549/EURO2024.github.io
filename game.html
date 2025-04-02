@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EURO 2024</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" type="image/x-icon" href="./img/favicons/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+<!-- <head>
+  <title>EURO 2024</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head> -->
+
+<body>
+  <script src="script.js">
+</script>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">EURO 2024</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="groups.html">Groups</a></li>
+        <li><a href="knockout.html">Knockout Stage</a></li>
+        <li><a href="tot.html">Team Of&#160;The Tournament</a></li>
+        <li><a href="game.html">Penalty Shootout Game</a></li>
+        <li><a href="quiz.html"> Quiz</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+     </div>
+  </nav>
+<div class="main" id="continut"></div>
+<div class="title1">
+</div>
+
+<div class="main" id="slice5"></div>
+<div class="mt-4 p-5">
+  <center> <h1 class="titlu">Penalty Shootout Game</h1> </center>
+</div>
+
+     <div class="row">
+                <div class="col-sm-3">
+                            <center>
+                 <div class="film-grid">
+                <div class="film-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="film-rank">1</div>
+                    <img src="./img/robot.webp" alt="Avatar" class="film-poster">
+                    <div class="film-info">
+                        <h2 class="film-title"> Player 1 </h2>
+                        <p class="film-desc">Challenge yourself against a&#160;smart, computer-controlled air hockey player!</p>
+                        <p class="film-earnings">Computer</p>
+                    </div>
+                </div>
+      </div>
+      </center>
+      <p class="text1">AI&#160;in&#160;games enhances gameplay by&#160;controlling non-player characters (NPCs), adapting difficulty, and creating immersive experiences. It&#160;uses machine learning and algorithms to&#160;simulate realistic behaviors, predict player actions, and generate dynamic content. </p>
+        </div>
+        <div class="col-sm-6">
+                    <center>
+            <canvas id="canvas" width="660" height="520"></canvas> </center>
+            <p class="text2">
+Step into a&#160;thrilling Air Hockey match where the AI&#160;plays the role of&#160;an&#160;elite goalkeeper. Inspired by&#160;the precision and reflexes of&#160;top football keepers in&#160;EURO 2024, the AI&#160;blocks shots with lightning-fast reactions and strategic saves. As&#160;a&#160;human player, you&#8217;ll need to&#160;outsmart the AI, using your creativity and quick reflexes to&#160;break through its defense. It&#8217;s a&#160;fast-paced battle of&#160;wits&#8212;can you score past the AI&#8217;s unbeatable defense? </p>
+        </div>
+        <div class="col-sm-3">
+            <center>
+                 <div class="film-grid">
+                <div class="film-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="film-rank">2 </div>
+                    <img src="./img/rodri.jpg" alt="Avatar" class="film-poster">
+                    <div class="film-info">
+                        <h2 class="film-title"> Player 2</h2>
+                        <p class="film-desc">Take control and showcase your skills in&#160;our interactive air hockey game!</p>
+                        <p class="film-earnings">Human</p>
+                    </div>
+                </div>
+      </div>
+       </center>
+      <p class="text1">Humans bring creativity, strategy, and unpredictability to&#160;games, making each experience unique. Players adapt to&#160;challenges, learn from mistakes, and develop new tactics. Unlike AI, humans rely on&#160;intuition, emotions, and teamwork, creating dynamic and social gameplay.</p>
+        </div>
+     </div>
+
+<script>
+    var canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    var ball_speed = 10;
+    var xspeed = 0;
+    var yspeed = 0;
+    var player_score = 0;
+    
+    const colors = {
+        background: '#222',
+        accent: '#403d84',
+        player: '#FF671F',
+        puck: '#403d84',
+        goal: '#222',
+        text: '#FF671F'
+    };
+
+    document.addEventListener("mousemove", mouseMoveHandler, false);
+
+    function draw_rect(x,y,w,h,b) {
+        ctx.beginPath();
+        ctx.strokeStyle = b ? colors.accent : colors.goal;
+        ctx.lineWidth = b ? 40 : 4;
+        ctx.strokeRect(x,y,w,h);
+        ctx.closePath();
+    }  
+
+    function draw_goal(x,y,r,s) {
+        ctx.beginPath();
+        ctx.lineWidth = 4;
+        ctx.arc(x, y, r, s ? Math.PI/2 : -Math.PI/2, s ? 3*Math.PI/2 : Math.PI/2, false);
+        ctx.strokeStyle = colors.goal;
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    function draw_circle(x,y,r,w) {
+        ctx.beginPath();
+        ctx.lineWidth = w;
+        ctx.arc(x, y, r, 0, Math.PI*2);
+        ctx.strokeStyle = colors.accent;
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    function draw_filled_circle(x,y,r,d) {
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI*2);
+        const gradient = ctx.createRadialGradient(x, y, r/2, x, y, r);
+        if(d === 1) gradient.addColorStop(0, colors.player);
+        else gradient.addColorStop(0, colors.puck);
+        gradient.addColorStop(1, d === 1 ? '#403d84' : '#403d84');
+        ctx.fillStyle = gradient;
+        ctx.strokeStyle = colors.text;
+        ctx.shadowColor = colors.puck;
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    function draw_board() {
+        ctx.fillStyle = colors.background;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        draw_rect(0,0,660,520,1);
+        draw_rect(30,30,600,460,0);
+        draw_goal(30,260,70,1);
+        draw_goal(630,260,70,0);
+        draw_circle(330,260,40,4);
+        draw_circle(330,260,5,4);
+        ctx.setLineDash([10, 15]);
+        ctx.beginPath();
+        ctx.moveTo(330,30);
+        ctx.lineTo(330,490);
+        ctx.strokeStyle = colors.accent;
+        ctx.stroke();
+        ctx.closePath();
+        ctx.setLineDash([]);
+        ctx.font = "bold 40px -apple-system, BlinkMacSystemFont, sans-serif";
+        ctx.textAlign = "center"
+        ctx.fillStyle = colors.text;
+        ctx.fillText("Score: " + player_score, 330, 100);
+    }
+
+    function distance(x1,y1,x2,y2) {
+        return Math.sqrt((x2-x1)**2 + (y2-y1)**2);
+    }
+
+    var Mallet = function(x,y,r) {
+        this.x = x;
+        this.y = y;
+        this.radius = r;
+    }
+
+    var pMallet = new Mallet(canvas.width/2, canvas.height/2, 30);
+    var ball = new Mallet(canvas.width/2, canvas.height/2, 15);
+
+    function mouseMoveHandler(e) {
+        var rect = canvas.getBoundingClientRect();
+        pMallet.x = e.clientX - rect.left;
+        pMallet.y = e.clientY - rect.top;
+    }
+
+    function play() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        draw_board();
+        draw_filled_circle(pMallet.x, pMallet.y, pMallet.radius, 1);
+        draw_filled_circle(ball.x, ball.y, ball.radius, 0);
+
+        // Wall collisions
+        if(ball.y + yspeed < 30 + ball.radius || ball.y + yspeed > 490 - ball.radius) {
+            yspeed *= -1;
+        }
+
+        // Goal collisions (score from both sides)
+        if(ball.y >= 190 && ball.y <= 330) {
+            if(ball.x + xspeed < 30 - ball.radius || ball.x + xspeed > 630 + ball.radius) {
+                player_score++;
+                resetBall();
+            }
+        } else {
+            if(ball.x + xspeed < 30 + ball.radius || ball.x + xspeed > 630 - ball.radius) {
+                xspeed *= -1;
+            }
+        }
+
+        // Player collision
+        var pDist = distance(pMallet.x, pMallet.y, ball.x, ball.y);
+        if(pDist < 45) {
+            var dx = (ball.x - pMallet.x)/30;
+            var dy = (ball.y - pMallet.y)/30;
+            xspeed = dx * ball_speed;
+            yspeed = dy * ball_speed;
+        }
+
+        ball.x += xspeed;
+        ball.y += yspeed;
+        xspeed *= 0.985;
+        yspeed *= 0.985;
+    }
+
+    function resetBall() {
+        ball.x = canvas.width/2;
+        ball.y = canvas.height/2;
+        xspeed = (Math.random() - 0.5) * 5;
+        yspeed = (Math.random() - 0.5) * 5;
+        ctx.fillStyle = colors.goal + '40';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    setInterval(play, 10);
+</script>
+
+      <center>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+      </center>
+
+<div class="title1">
+
+</div></center>
+
+<footer id="slice6">
+      <div class="footer">
+      <div class="row">
+      <ul>
+      <li><a href="https://www.google.com/?safe=active&ssui=on">Contact us</a></li>
+      <li><a href="https://www.google.com/?safe=active&ssui=on">Donations</a></li>
+      <li><a href="https://www.google.com/?safe=active&ssui=on">Privacy Policy</a></li>
+      <li><a href="https://www.google.com/?safe=active&ssui=on">Terms & Conditions</a></li>
+      <li><a href="https://www.google.com/?safe=active&ssui=on">Social Media</a></li>
+      </ul>
+      </div>
+      <div class="row">
+      Colegiul National de&#160;Informatica &#171;Grigore Moisil&#187; Brasov | Milandru Nicon-David
+      </div>
+      </div>
+      </footer>
+</html>
